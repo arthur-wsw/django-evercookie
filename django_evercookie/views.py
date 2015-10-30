@@ -1,7 +1,7 @@
  #-*- coding: utf-8 -*-
+from io import StringIO
 
 from PIL import Image
-from StringIO import StringIO
 from copy import deepcopy
 from django_dont_vary_on.decorators import dont_vary_on
 
@@ -15,7 +15,6 @@ from django_evercookie.config import settings
 @dont_vary_on('Cookie', 'Host')
 @cookie_exists(settings.cache_cookie_name)
 def evercookie_cache(request):
-
     cookie = request.COOKIES[settings.cache_cookie_name]
     response = HttpResponse(content=cookie, content_type='text/html; charset=UTF-8')
     response['Last-Modified'] = 'Wed, 30 Jun 2010 21:36:48 GMT'
